@@ -90,8 +90,9 @@ public class Alvaro {
                 ()->assertAll("test addAtpos con lista vacia",
                         ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>();mylist.addAtPos("A",1);assertEquals("[A]",mylist.toString());},
                         ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>();mylist.addAtPos("B",2);assertEquals("[B]",mylist.toString());},
-                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>();mylist.addAtPos("A",6);assertEquals("[A]",mylist.toString());}
-                        )
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>();assertThrows(IllegalArgumentException.class,()->mylist.addAtPos("A",0));}
+                )
+
         );
     }
 
