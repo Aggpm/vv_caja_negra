@@ -68,7 +68,7 @@ public class Prueba {
         );
 
         assertThrows(NoSuchElementException.class, () ->
-                badlist.indexOf("@"), "La predicción de la excepción ha fallado para caracter ilegal"
+                badlist.indexOf("@"), "La predicción de la excepción ha fallado para un caracter ilegal"
         );
 
     }
