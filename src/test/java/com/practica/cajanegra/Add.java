@@ -2,15 +2,16 @@ package com.practica.cajanegra;
 
 import com.cajanegra.SingleLinkedListImpl;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import java.sql.SQLOutput;
+import java.util.NoSuchElementException;
+
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class Alvaro {
+public class Add {
 
 
     @Test
@@ -93,6 +94,83 @@ public class Alvaro {
                         ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>();assertThrows(IllegalArgumentException.class,()->mylist.addAtPos("A",0));}
                 )
 
+        );
+    }
+    @Test
+    public void testAddLast(){
+
+        assertAll("test addLast",
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addLast("@");assertEquals("[A, B, C, D]",mylist.toString());},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B", "C", "D");assertThrows(IllegalArgumentException.class,()->{mylist.addLast("@");});},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addLast("A");assertEquals("[A, B, C, D, A]",mylist.toString());},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addLast("B");assertEquals("[A, B, C, D, B]",mylist.toString());},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addLast("M");assertEquals("[A, B, C, D, M]",mylist.toString());},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addLast("Y");assertEquals("[A, B, C, D, Y]",mylist.toString());},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addLast("Z");assertEquals("[A, B, C, D, Z]",mylist.toString());},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addLast("[");assertEquals("[A, B, C, D]",mylist.toString());},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addLast("[");});},
+                ()->{ SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addLast("");});}
+        );
+    }
+    @Test
+    @DisplayName("Prueba addNTimes")
+    public void pruebaT(){
+        SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String > ("A", "B","C","D");
+        System.out.println(mylist.toString());
+        mylist.addNTimes("@",5);
+        System.out.println(mylist.toString());
+    }
+    @Test
+    @DisplayName("Prueba addNTimes")
+    public void testAddNTimes(){
+        assertAll("Test addAtPos",
+
+                ()-> assertAll("test addNtimes con n=0",
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("",0);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("@",0);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("A",0);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("B",0);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("M",0);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("Y",0);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("Z",0);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("[",0);});}
+                ),
+                ()-> assertAll("test addNtimes con n=1",
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("",1);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("@",1);assertEquals("[A, B, C, D]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("@",1);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("A",1);assertEquals("[A, B, C, D, A]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("B",1);assertEquals("[A, B, C, D, B]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("M",1);assertEquals("[A, B, C, D, M]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("Y",1);assertEquals("[A, B, C, D, Y]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("Z",1);assertEquals("[A, B, C, D, Z]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("[",1);assertEquals("[A, B, C, D]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("[",1);});}
+                ),
+                ()-> assertAll("test addNTimes para n=2",
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("",2);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("@",2);assertEquals("[A, B, C, D]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("@",2);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("A",2);assertEquals("[A, B, C, D, A, A]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("B",2);assertEquals("[A, B, C, D, B, B]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("M",2);assertEquals("[A, B, C, D, M, M]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("Y",2);assertEquals("[A, B, C, D, Y, Y]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("Z",2);assertEquals("[A, B, C, D, Z, Z]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("[",2);assertEquals("[A, B, C, D]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->mylist.addNTimes("[",2));}
+                ),
+                ()-> assertAll("test addNtimes con n=5",
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("",5);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("@",5);assertEquals("[A, B, C, D]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("@",5);});},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("A",5);assertEquals("[A, B, C, D, A, A, A, A, A]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("B",5);assertEquals("[A, B, C, D, B, B, B, B, B]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("M",5);assertEquals("[A, B, C, D, M, M, M, M, M]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("Y",5);assertEquals("[A, B, C, D, Y, Y, Y, Y, Y]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("Z",5);assertEquals("[A, B, C, D, Z, Z, Z, Z, Z]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");mylist.addNTimes("[",5);assertEquals("[A, B, C, D]",mylist.toString());},
+                        ()->{SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<String>("A", "B","C","D");assertThrows(IllegalArgumentException.class,()->{mylist.addNTimes("[",5);});}
+                )
         );
     }
 

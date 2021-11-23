@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.NoSuchElementException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 import static org.junit.jupiter.api.Assertions.*;
