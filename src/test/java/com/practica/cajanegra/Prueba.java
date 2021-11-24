@@ -120,6 +120,19 @@ public class Prueba {
         );
     }
 
+    @Test
+    @DisplayName("Metodo toString")
+    public void testtoString(){
+        SingleLinkedListImpl<String> part = new SingleLinkedListImpl<>("@");
+
+        assertAll("test toString",
+                ()-> assertEquals("@", part.toString()),
+                ()-> assertEquals("A",list.toString()),
+                ()-> assertEquals("A, B",list1.toString()),
+                ()-> assertEquals("",emptyList.toString())
+        );
+    }
+
     @AfterAll
     public static void shutDown(){
         System.out.println("\nTest finalizado ---------------------------------------------------\n");
