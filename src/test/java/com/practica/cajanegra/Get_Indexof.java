@@ -1,13 +1,8 @@
 package com.practica.cajanegra;
 
 import com.cajanegra.SingleLinkedListImpl;
-
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.provider.ValueSource;
-
 import java.util.NoSuchElementException;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Get_Indexof {
@@ -19,7 +14,8 @@ public class Get_Indexof {
             "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "o", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
             "Y", "1");
     SingleLinkedListImpl<String> emptyList = new SingleLinkedListImpl<>();
-    SingleLinkedListImpl<String> lista = new SingleLinkedListImpl<String>("A", "B", "C", "A", "B");
+    SingleLinkedListImpl<String> list = new SingleLinkedListImpl<>("A");
+    SingleLinkedListImpl<String> list1 = new SingleLinkedListImpl<>("A", "B");
 
     @BeforeAll
     public static void startUp (){
@@ -75,22 +71,61 @@ public class Get_Indexof {
     }
 
     @Test
-    @DisplayName("Prueba size")
-    public void testSize(){
-        SingleLinkedListImpl<String> list = new SingleLinkedListImpl<String>("A", "B");
-        SingleLinkedListImpl<String> lista = new SingleLinkedListImpl<String>();
-        assertEquals(27,mylist.size());
-        assertEquals(2,list.size());
-        assertEquals(0,emptyList.size());
+    @DisplayName("Metodo isEmpty")
+    public void testisEmpty(){
+
+        assertAll("test isEmpty",
+                ()-> assertFalse(list.isEmpty()),
+                ()-> assertFalse(list1.isEmpty()),
+                ()-> assertFalse(mylist.isEmpty()),
+                ()-> assertTrue(emptyList.isEmpty())
+        );
     }
 
     @Test
-    @DisplayName("Prueba isSubList")
-    public void testIsSublist(){
+    @DisplayName("Método size")
+    public void testSize(){
 
-        SingleLinkedListImpl<String> parte = new SingleLinkedListImpl<String>("A", "B");
-        assertEquals(2,lista.isSubList(parte));
+        assertAll("test testSize",
+                ()->{ SingleLinkedListImpl<String> list = new SingleLinkedListImpl<>("A"); assertEquals(1,list.size());},
+                ()->{ SingleLinkedListImpl<String> list1 = new SingleLinkedListImpl<>("A", "B"); assertEquals(2,list1.size());},
+                ()->{ SingleLinkedListImpl<String> list2 = new SingleLinkedListImpl<>("A", "B", "C", "D", "E",
+                        "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O"); assertEquals(16,list2.size());},
+                ()->{ SingleLinkedListImpl<String> list3 = new SingleLinkedListImpl<>("A", "B", "C", "D", "E",
+                        "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+                        "Y"); assertEquals(26,list3.size());},
+                ()-> assertEquals(27,mylist.size()),
+                ()-> assertEquals(0,emptyList.size())
+        );
+    }
 
+    @Test
+    @DisplayName("Método isSubList")
+    public void testisSubList(){
+
+        assertAll("test isSubList",
+                ()->{ SingleLinkedListImpl<String> parte = new SingleLinkedListImpl<>("@"); assertEquals(-1,mylist.isSubList(parte));},
+                ()->{ SingleLinkedListImpl<String> parte1 = new SingleLinkedListImpl<>("A");  assertEquals(1,mylist.isSubList(parte1));},
+                ()->{ SingleLinkedListImpl<String> parte2 = new SingleLinkedListImpl<>("B"); assertEquals(2,mylist.isSubList(parte2));},
+                ()->{ SingleLinkedListImpl<String> parte3 = new SingleLinkedListImpl<>("O", "P"); assertEquals(16,mylist.isSubList(parte3));},
+                ()->{ SingleLinkedListImpl<String> parte4 = new SingleLinkedListImpl<>("Y"); assertEquals(26,mylist.isSubList(parte4));},
+                ()->{ SingleLinkedListImpl<String> parte5 = new SingleLinkedListImpl<>("Z"); assertEquals(27,mylist.isSubList(parte5)); },
+                ()->{ SingleLinkedListImpl<String> parte6 = new SingleLinkedListImpl<>("["); assertEquals(-1,mylist.isSubList(parte6));},
+                ()-> assertEquals(0,mylist.isSubList(emptyList))
+        );
+    }
+
+    @Test
+    @DisplayName("Método toString")
+    public void testtoString(){
+        SingleLinkedListImpl<String> part = new SingleLinkedListImpl<>("@");
+
+        assertAll("test toString",
+                ()-> assertEquals("@", part.toString()),
+                ()-> assertEquals("A",list.toString()),
+                ()-> assertEquals("A, B",list1.toString()),
+                ()-> assertEquals("",emptyList.toString())
+        );
     }
 
     @AfterAll
