@@ -13,10 +13,10 @@ public class Add {
 
     private SingleLinkedListImpl<String> mylist;
     private SingleLinkedListImpl<String> listvacia;
+
     @BeforeEach
     public void iniciarLista(){
         mylist = new SingleLinkedListImpl<String>("A", "B", "C", "D");
-        listvacia = new SingleLinkedListImpl<>();
     }
     /*--------------------------Test AddFirst-----------------------*/
     @ParameterizedTest(name = "Añade {0} al inicio de la lista")
