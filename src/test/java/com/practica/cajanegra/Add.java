@@ -105,15 +105,15 @@ public class Add {
     @ParameterizedTest(name = "Error al añadir en la posicion {0} de la lista: {1}")
     @CsvSource(value = {
             "1: @",
-            "1: ]",
+            "1: [",
             "2: @",
-            "2: ]",
+            "2: [",
             "4: @",
-            "4: ]",
+            "4: [",
             "5: @",
-            "5: ]",
+            "5: [",
             "6: @",
-            "6: ]"
+            "6: ["
     }, delimiter = ':')
     public void testAddAtPosInvalidElem(int pos,String elem) {
 
@@ -172,12 +172,14 @@ public class Add {
 
     @ParameterizedTest(name = "Error al añadir {0} veces en la lista: {1}")
     @CsvSource(value = {
+            "0: @",
+            "0: [",
             "1: @",
-            "1: ]",
+            "1: [",
             "2: @",
-            "2: ]",
+            "2: [",
             "5: @",
-            "5: ]"
+            "5: ["
     }, delimiter = ':')
     public void testAddNTimesInvalidElem(int pos,String elem) {
 
