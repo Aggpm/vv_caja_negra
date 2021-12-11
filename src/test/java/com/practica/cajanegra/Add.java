@@ -125,6 +125,12 @@ public class Add {
     /*--------------------------Test AddNTimes----------------------*/
     @ParameterizedTest(name = "Añade {0} veces al final de la lista: {1}")
     @CsvSource(value = {
+            "0: A: [A, B, C, D]",
+            "0: B: [A, B, C, D]",
+            "0: M: [A, B, C, D]",
+            "0: Y: [A, B, C, D]",
+            "0: Z: [A, B, C, D]",
+
             "1: A: [A, B, C, D, A]",
             "1: B: [A, B, C, D, B]",
             "1: M: [A, B, C, D, M]",
@@ -151,12 +157,11 @@ public class Add {
 
     @ParameterizedTest(name = "Error al añadir {0} veces en la lista: {1}")
     @CsvSource(value = {
-            "0: A",
-            "0: B",
-            "0: M",
-            "0: Y",
-            "0: Z",
-            "-1: M"
+            "-1: A",
+            "-1: B",
+            "-1: M",
+            "-1: Y",
+            "-1: Z"
     }, delimiter = ':')
     public void testAddNTimesInvalidN(int n,String elem) {
 
