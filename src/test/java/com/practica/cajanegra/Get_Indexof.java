@@ -86,9 +86,9 @@ public class Get_Indexof {
     @DisplayName("Método size")
     public void testSize(){
 
-        assertAll("test testSize",
-                ()->{ SingleLinkedListImpl<String> list = new SingleLinkedListImpl<>("A"); assertEquals(1,list.size());},
-                ()->{ SingleLinkedListImpl<String> list1 = new SingleLinkedListImpl<>("A", "B"); assertEquals(2,list1.size());},
+        assertAll("test size",
+                ()-> assertEquals(1,list.size()),
+                ()-> assertEquals(2,list1.size()),
                 ()->{ SingleLinkedListImpl<String> list2 = new SingleLinkedListImpl<>("A", "B", "C", "D", "E",
                         "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O"); assertEquals(16,list2.size());},
                 ()->{ SingleLinkedListImpl<String> list3 = new SingleLinkedListImpl<>("A", "B", "C", "D", "E",
@@ -121,10 +121,10 @@ public class Get_Indexof {
         SingleLinkedListImpl<String> part = new SingleLinkedListImpl<>("@");
 
         assertAll("test toString",
-                ()-> assertEquals("@", part.toString()),
-                ()-> assertEquals("A",list.toString()),
-                ()-> assertEquals("A, B",list1.toString()),
-                ()-> assertEquals("",emptyList.toString())
+                ()-> assertEquals("[@]", part.toString()),
+                ()-> assertEquals("[A]",list.toString()),
+                ()-> assertEquals("[A, B]",list1.toString()),
+                ()-> assertEquals("[]",emptyList.toString())
         );
     }
 
