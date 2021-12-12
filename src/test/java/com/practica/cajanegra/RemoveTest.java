@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Remove {
+public class RemoveTest {
 
     SingleLinkedListImpl<String>mylist = new SingleLinkedListImpl<>("A", "B", "M", "Y", "Z");
     SingleLinkedListImpl<String>badlist = new SingleLinkedListImpl<>("A", "B", "@", "[", "Z");
