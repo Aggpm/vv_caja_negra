@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Get_Indexof {
+public class Query {
 
     SingleLinkedListImpl<String> mylist = new SingleLinkedListImpl<>("A", "B", "C", "D", "E",
             "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
