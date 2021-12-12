@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class Add {
+public class AddTest {
 
     private SingleLinkedListImpl<String> mylist;
     private SingleLinkedListImpl<String> listvacia;
